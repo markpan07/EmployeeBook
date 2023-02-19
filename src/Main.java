@@ -1,33 +1,48 @@
 public class Main {
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
-    EmployeeBook book1 = new EmployeeBook();
-    book1.addEmployee("Pankov", "Mark", "Dmitrievich", 1, 150_000);
-    book1.addEmployee("Ivanov", "Samuil", "Olegovich", 1, 150_000);
-    book1.addEmployee("Gres", "Roman", "Dmitrievich", 1, 150_000);
-    book1.printArray(book1.getEmployeeFullNameList());
-    book1.getEmployees();
-    Employee[] pankovMark = book1.findEmployee("Pankov", "Mark", "Dmitrievich");
-    printEmployee(pankovMark);
+        EmployeeBook book1 = new EmployeeBook();
+        book1.addEmployee("Pankov", "Mark", "Dmitrievich", 1, 150_000);
+        book1.addEmployee("Ivanov", "Samuil", "Olegovich", 1, 150_000);
+        book1.addEmployee("Gres", "Roman", "Dmitrievich", 1, 150_000);
+        book1.addEmployee("Miheev", "Oleg", "Evgenievich", 2, 111_000);
+        book1.addEmployee("Lobov", "Aleksandr", "Dmitrievich", 5, 100_000);
+        book1.addEmployee("Konstantinov", "Gulnaz", "Grigorievich", 3, 89_000);
+        book1.addEmployee("Medakov", "Artem", "Pavlovich", 2, 90_000);
+
+        System.out.println("Список сотрудников:");
+        book1.printArray(book1.getEmployeeFullNameList());
+        System.out.println("Поиск сорудника по запросу:");
+        Employee[] pankovMark = book1.findEmployee("Pankov", "Mark", "Dmitrievich");
+        printEmployee(pankovMark);
 
 
-    book1.deleteEmployee("Pankov", "Mark", "Dmitrievich", 1);
-    book1.printArray(book1.getEmployeeFullNameList());
+        book1.deleteEmployee("Pankov", "Mark", "Dmitrievich", 1);
+        System.out.println("Список сотрудников после удаления: ");
+        book1.printArray(book1.getEmployeeFullNameList());
         System.out.println("");
-    book1.addEmployee("Grishin", "Aleksey", "Olegovich", 2, 95_000);
-    book1.addEmployee("Puzin", "Yuliy", "Alekseevich", 2, 95_000);
-    book1.printArray(book1.getEmployeeFullNameList());
-    Employee[] puzin = book1.findEmployee("Puzin", "Yuliy", "Alekseevich");
-    printEmployee(puzin);
+        book1.addEmployee("Grishin", "Aleksey", "Olegovich", 4, 95_000);
+        book1.addEmployee("Puzin", "Yuliy", "Alekseevich", 2, 95_000);
+        System.out.println("Список сотрудников после добавления: ");
+        book1.printArray(book1.getEmployeeFullNameList());
+        Employee[] puzin = book1.findEmployee("Puzin", "Yuliy", "Alekseevich");
+        printEmployee(book1.getEmployees());
+
+        printEmployee(book1.findEmployee(4));
+        book1.changeSalary(4, 100_000);
+        book1.changeDepartment(4, 1);
+        printEmployee(book1.findEmployee(4));
+
+        book1.printEmployeesWithDepartment();
 
 
 
 
-
-
-      /*  System.out.println("Сумма затрат на зп сотрудникам: " + countEmployeeSalarySum() + "\n");
+//middle level
+      /*
+        System.out.println("Сумма затрат на зп сотрудникам: " + countEmployeeSalarySum() + "\n");
         System.out.println("Всего сотрудников в компании: " + getEmployeeQuantity() + "\n");
 
         System.out.println("Средняя зп сотрудников: " + countMeanSalary() + "\n");
@@ -60,10 +75,17 @@ public class Main {
 
     public static void printEmployee(Employee[] array) {
         for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i].toString());
+            if (array[i] != null) {
+                System.out.println(array[i].toString());
+            } else {
+                System.out.println(i + "- Пустое место");
+            }
         }
     }
 
+    public static void printEmployee(Employee empl) {
+        System.out.println(empl.toString());
+    }
 
 
 }

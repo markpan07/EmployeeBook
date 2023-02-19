@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 public class EmployeeBook {
     private Employee[] employees = new Employee[10];
 
@@ -45,6 +47,34 @@ public class EmployeeBook {
             }
         }
         return foundEmployees;
+    }
+
+    public Employee findEmployee(int id) {
+        Employee search = null;
+        for (Employee empl : employees) {
+
+            if (empl != null) {
+                if (empl.getId() == id) {
+                    search = empl;
+                }
+            }
+
+        }
+        if (search == null) {
+            System.out.println("Нет сотрудника с таким id");
+        }
+        return search;
+    }
+
+
+    public void changeSalary(int id, int newSalary) {
+        Employee empl = findEmployee(id);
+        empl.setSalary(newSalary);
+    }
+
+    public void changeDepartment(int id, int newDepartment) {
+        Employee empl = findEmployee(id);
+        empl.setDepartment(newDepartment);
     }
 
     public void addEmployee(String lastName, String firstName, String thirdName, int department, int salary) {
@@ -136,6 +166,26 @@ public class EmployeeBook {
     }
 
     // Methods for all employees
+
+    public void printEmployeesWithDepartment() {
+        System.out.println("");
+        System.out.println("Список сотрудников по департаментам");
+        System.out.println("Департамент 1:");
+        printArray(getEmployeeInfoListInDepartment(1));
+        System.out.println("");
+        System.out.println("Департамент 2:");
+        printArray(getEmployeeInfoListInDepartment(2));
+        System.out.println("");
+        System.out.println("Департамент 3:");
+        printArray(getEmployeeInfoListInDepartment(3));
+        System.out.println("");
+        System.out.println("Департамент 4:");
+        printArray(getEmployeeInfoListInDepartment(4));
+        System.out.println("");
+        System.out.println("Департамент 5:");
+        printArray(getEmployeeInfoListInDepartment(5));
+        System.out.println("");
+    }
 
     public int getEmployeeQuantity() {
         int count = 0;
